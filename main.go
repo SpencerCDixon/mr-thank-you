@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// Handle endpoints
-	http.Handle("/", &templateHandler{filename: "chat.html"})
+	http.Handle("/", http.FileServer(http.Dir("./dist")))
 	http.Handle("/cards", r)
 
 	// get the room going
