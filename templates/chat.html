@@ -32,7 +32,7 @@
       if (!window["WebSocket"]) {
         alert("Error: Your browser does not support web sockets.")
       } else {
-        socket = new WebSocket("ws://{{.Host}}/cards");
+        socket = new WebSocket("wss://{{.Host}}/cards");
         socket.onclose = function() { alert("Connection has been closed."); }
         socket.onmessage = function(e) {
           var entry = JSON.parse(e.data);
