@@ -44,7 +44,7 @@ func main() {
 
 	// start web server
 	log.Println("Starting web server on", port)
-	if err := http.ListenAndServe(port, nil); err != nil {
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal("Listen and serve", err)
 	}
 }
