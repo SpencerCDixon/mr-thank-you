@@ -9,18 +9,16 @@ import (
 	"sync"
 	"text/template"
 
-	"github.com/joho/godotenv"
 	"github.com/spencercdixon/izzy/db"
 	"github.com/spencercdixon/izzy/trace"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal(err)
-	}
 	// env flags
 	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("Error: PORT must be defined")
+	}
 
 	shouldTrace := flag.Bool("trace", false, "Bool to turn tracing on/off to stdout")
 
