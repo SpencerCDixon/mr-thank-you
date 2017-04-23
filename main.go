@@ -9,12 +9,19 @@ import (
 	"sync"
 	"text/template"
 
+	"github.com/joho/godotenv"
 	"github.com/spencercdixon/izzy/db"
 	"github.com/spencercdixon/izzy/trace"
 )
 
 func main() {
-	addr := flag.String("addr", ":8080", "The address of the application")
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+	// env flags
+	port := os.Getenv("PORT")
+
 	shouldTrace := flag.Bool("trace", false, "Bool to turn tracing on/off to stdout")
 
 	// Parse server options
@@ -38,8 +45,8 @@ func main() {
 	go r.run()
 
 	// start web server
-	log.Println("Starting web server on", *addr)
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	log.Println("Starting web server on", port)
+	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal("Listen and serve", err)
 	}
 }
