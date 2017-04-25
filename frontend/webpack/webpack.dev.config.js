@@ -1,18 +1,17 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const config = require('./webpack.common.config.js');
 
 config.devtool = "cheap-eval-source-map";
-config.plugins = [
-  new HtmlWebpackPlugin({
-    template: path.join(__dirname, './index.tmpl.html'),
-  }),
-];
+config.plugins.push(
+  new webpack.HotModuleReplacementPlugin()
+)
 config.devServer = {
   port: 3000,
   compress: true,
   contentBase: path.join(__dirname, '..', 'dist'),
+  hot: true,
 };
 
 module.exports = config
