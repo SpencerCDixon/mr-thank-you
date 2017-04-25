@@ -22,7 +22,8 @@ class App extends Component {
     // TODO: handle error gracefully
       alert('browser doesnt have websockets.. :-(');
     } else {
-      this.socket = new WebSocket("ws://localhost:3001/ws");
+      this.socket = new WebSocket("ws://localhost:3000/ws");
+      this.socket.onopen = () => alert('opened!');
       this.socket.onclose = () => alert('connection closed');
       this.socket.onmessage = e => {
         const entry = JSON.parse(e.data);

@@ -14,7 +14,10 @@ config.devServer = {
   hot: true,
   clientLogLevel: 'error',
   proxy: {
-    "/cards": "http://localhost:3001",
+    "/ws": {
+      target: "ws://localhost:3001",
+      ws: true,
+    }
   }
 };
 

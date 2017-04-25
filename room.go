@@ -63,8 +63,12 @@ var upgrader = &websocket.Upgrader{
 	WriteBufferSize: socketBufferSize,
 	CheckOrigin: func(r *http.Request) bool {
 		origin := r.Header.Get("Origin")
+
+		// TODO: don't hard code these in...
+		webpack := "http://localhost:3000"
+		local := "http://localhost:3001"
 		// whitelist our webpack dev server to let it through in development
-		if origin == "http://localhost:3000" {
+		if origin == webpack || origin == local {
 			return true
 		}
 		return false
