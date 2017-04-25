@@ -1,4 +1,5 @@
 import { h, render } from 'preact';
 import './styles/global.css';
+import App from './components/app.js';
 
-render(<h1>Hello thing</h1>, document.body)
+render(<App />, document.body)

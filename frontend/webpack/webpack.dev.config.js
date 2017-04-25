@@ -12,6 +12,10 @@ config.devServer = {
   compress: true,
   contentBase: path.join(__dirname, '..', 'dist'),
   hot: true,
+  clientLogLevel: 'error',
+  proxy: {
+    "/cards": "http://localhost:3001",
+  }
 };
 
 module.exports = config

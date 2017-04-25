@@ -37,7 +37,7 @@ func main() {
 
 	// Handle endpoints
 	http.Handle("/", http.FileServer(http.Dir("./dist")))
-	http.Handle("/cards", r)
+	http.Handle("/ws", r)
 
 	// get the room going
 	go r.run()

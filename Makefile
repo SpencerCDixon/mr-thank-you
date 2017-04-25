@@ -3,9 +3,10 @@ deploy:
 	@echo "Building go app to 'bin/heroku"
 	@GOOS=linux go build -o bin/heroku
 
-dev:
+dev: 
 	@echo "Building"
-	PORT=8080 go build && ./izzy -trace
+	@go build 
+	@PORT=3001 ./izzy -trace
 
 build-ui:
 	cd ./frontend
