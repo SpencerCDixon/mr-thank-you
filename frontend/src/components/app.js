@@ -1,16 +1,6 @@
 import { h, Component } from 'preact';
 import CardEntryForm from './card-entry-form.js';
 
-function websocketUrl() {
-  let url
-  const loc = window.location;
-  url = loc.protocal === "https:" ? "wss://" : "ws://";
-  url += loc.host;
-  url += "/cards";
-  console.log("using socket url: ", url);
-  return url;
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +12,7 @@ class App extends Component {
     // TODO: handle error gracefully
       alert('browser doesnt have websockets.. :-(');
     } else {
-      this.socket = new WebSocket("ws://localhost:3000/ws");
+      this.socket = new WebSocket(`ws://${document.location.host}/ws`);
       this.socket.onopen = () => alert('opened!');
       this.socket.onclose = () => alert('connection closed');
       this.socket.onmessage = e => {

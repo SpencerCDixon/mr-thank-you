@@ -10,7 +10,8 @@
   "author": "Spencer Dixon <spencercdixon@gmail.com> (http://spencerdixon.com/)",
   "license": "MIT",
   "dependencies": {
-    "preact": "^8.1.0"
+    "preact": "^8.1.0",
+    "styled-components": "^1.4.5"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
