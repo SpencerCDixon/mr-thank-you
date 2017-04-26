@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/websocket"
 	"github.com/spencercdixon/izzy/models"
@@ -67,11 +68,10 @@ var upgrader = &websocket.Upgrader{
 		fmt.Println("ORIGIN: ", origin)
 
 		// TODO: don't hard code these in...
-		webpack := "http://localhost:3000"
-		local := "http://localhost:3001"
-		heroku := "https://mrthankyou.herokuapp.com"
+		local := "localhost"
+		heroku := "mrthankyou.herokuapp"
 		// whitelist our webpack dev server to let it through in development
-		if origin == webpack || origin == local || origin == heroku {
+		if strings.Contains(origin, local) || strings.Contains(origin, heroku) {
 			return true
 		}
 		return false
