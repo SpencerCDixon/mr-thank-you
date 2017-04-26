@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -63,11 +64,12 @@ var upgrader = &websocket.Upgrader{
 	WriteBufferSize: socketBufferSize,
 	CheckOrigin: func(r *http.Request) bool {
 		origin := r.Header.Get("Origin")
+		fmt.Println("ORIGIN: ", origin)
 
 		// TODO: don't hard code these in...
 		webpack := "http://localhost:3000"
 		local := "http://localhost:3001"
-		heroku := "https://mrthankyou.herokuapp.com/"
+		heroku := "https://mrthankyou.herokuapp.com"
 		// whitelist our webpack dev server to let it through in development
 		if origin == webpack || origin == local || origin == heroku {
 			return true
