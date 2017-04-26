@@ -48,7 +48,7 @@ const Flex = styled.div`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { cards: 1010 };
+    this.state = { cards: 0 };
   }
 
   componentDidMount() {
@@ -64,10 +64,20 @@ class App extends Component {
         this.setState({cards: this.state.cards + entry.count});
       }
     }
+
+    fetch('/api/count')
+      .then(response => response.json())
+      .then(({Count}) => {
+        this.setState({cards: Count});
+      });
   }
 
   handleSend = (values) => {
-    this.socket.send(JSON.stringify(values));
+    // this.socket.send(JSON.stringify(values));
+    fetch('/api/count', {
+      method: 'POST',
+      body: JSON.stringify(values),
+    });
   }
 
   render() {

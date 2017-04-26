@@ -13,7 +13,7 @@ const Input = styled.input`
   font-size: 1.25em;
   padding: 0.85em;
   margin: 0.5em;
-  color: ${colors.gold}
+  color: #757575;
   border: ${props => props.error ? '2px solid' : 'none'};
   border-radius: 3px;
   border-color: ${props => props.error ? colors.red : ''};
@@ -121,7 +121,7 @@ class CardEntryForm extends Component {
             onBlur={this.handleBlur.bind(this, 'count')}
             error={this.state.errors.count}
             value={this.state.count}
-            placeholder="Cards Sent"
+            placeholder="# of cards sent"
           />
 
           <Button 

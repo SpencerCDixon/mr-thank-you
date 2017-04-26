@@ -1,12 +1,15 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/spencercdixon/izzy/db"
+	"github.com/spencercdixon/izzy/models"
 	"github.com/spencercdixon/izzy/trace"
 )
 
@@ -25,17 +28,46 @@ func main() {
 	flag.Parse()
 
 	// Setup DB
-	db := db.Connect()
-	defer db.Close()
+	postgres := db.Connect()
+	defer postgres.Close()
 
 	// Create room for clients and configure based on flags
-	r := newRoom(db)
+	r := newRoom(postgres)
 	if *shouldTrace {
 		r.tracer = trace.New(os.Stdout)
 	}
 
 	// Handle endpoints
 	http.Handle("/", http.FileServer(http.Dir("./dist")))
+	http.HandleFunc("/api/count", func(w http.ResponseWriter, req *http.Request) {
+		if req.Method == "GET" {
+			count := struct{ Count int }{1010}
+			b, _ := json.Marshal(count)
+			w.Write(b)
+			return
+		}
+
+		if req.Method == "POST" {
+			var entry models.CardEntry
+			decoder := json.NewDecoder(req.Body)
+			err := decoder.Decode(&entry)
+
+			if err != nil {
+				fmt.Println("failed decoding")
+				log.Fatal(err)
+			}
+
+			s := db.CardEntryService{postgres}
+			_, err = s.Create(&entry)
+
+			if err != nil {
+				fmt.Println("failed creating")
+				log.Fatal(err)
+			}
+			r.forward <- &entry
+			return
+		}
+	})
 	http.Handle("/ws", r)
 
 	// get the room going
