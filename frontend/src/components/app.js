@@ -56,7 +56,8 @@ class App extends Component {
     // TODO: handle error gracefully
       alert('browser doesnt have websockets.. :-(');
     } else {
-      this.socket = new WebSocket(`ws://${document.location.host}/ws`);
+      const ws = process.env.NODE_ENV === 'production' ? 'wss' : 'ws';
+      this.socket = new WebSocket(`${ws}://${document.location.host}/ws`);
       this.socket.onopen = () => console.log('Connection opened');
       this.socket.onclose = () => console.log('Connection closed');
       this.socket.onmessage = e => {

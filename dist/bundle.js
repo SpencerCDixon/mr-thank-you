@@ -8537,7 +8537,8 @@ var App = function (_Component) {
         // TODO: handle error gracefully
         alert('browser doesnt have websockets.. :-(');
       } else {
-        this.socket = new WebSocket('ws://' + document.location.host + '/ws');
+        var ws =  true ? 'wss' : 'ws';
+        this.socket = new WebSocket(ws + '://' + document.location.host + '/ws');
         this.socket.onopen = function () {
           return console.log('Connection opened');
         };
