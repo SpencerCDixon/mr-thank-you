@@ -3,8 +3,9 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const PATHS = {
+  src: path.join(__dirname, "..", "src"),
   output: path.join(__dirname, "..", "..", "dist"),
-  entry: path.join(__dirname, "..", "src", "main.js")
+  entry: path.join(__dirname, "..", "src", "main.js"),
 };
 
 module.exports = {
@@ -22,13 +23,21 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: "css-loader"
         })
       }
     ]
+  },
+  resolve: {
+    modules: [
+      PATHS.src,
+      "node_modules"
+    ],
+    alias: {
+      "react": "preact",
+    }
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),

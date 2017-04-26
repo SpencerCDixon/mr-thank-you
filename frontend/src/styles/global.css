@@ -1,3 +1,4 @@
 body {
-  background: goldenrod;
+  margin: 0;
+  overflow-x: hidden;
 }
