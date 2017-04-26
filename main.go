@@ -39,10 +39,19 @@ func main() {
 
 	// Handle endpoints
 	http.Handle("/", http.FileServer(http.Dir("./dist")))
+
+	// TODO: Refactor this and handle all errors
 	http.HandleFunc("/api/count", func(w http.ResponseWriter, req *http.Request) {
+		s := db.CardEntryService{postgres}
+
 		if req.Method == "GET" {
-			count := struct{ Count int }{1010}
-			b, _ := json.Marshal(count)
+			count, err := s.Count()
+			if err != nil {
+				fmt.Println("failed getting count")
+				log.Fatal(err)
+			}
+			jr := struct{ Count int }{count}
+			b, _ := json.Marshal(jr)
 			w.Write(b)
 			return
 		}
@@ -57,7 +66,6 @@ func main() {
 				log.Fatal(err)
 			}
 
-			s := db.CardEntryService{postgres}
 			_, err = s.Create(&entry)
 
 			if err != nil {

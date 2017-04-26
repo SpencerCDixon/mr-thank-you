@@ -73,7 +73,6 @@ class App extends Component {
   }
 
   handleSend = (values) => {
-    // this.socket.send(JSON.stringify(values));
     fetch('/api/count', {
       method: 'POST',
       body: JSON.stringify(values),

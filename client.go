@@ -5,7 +5,6 @@ import (
 	"log"
 
 	"github.com/gorilla/websocket"
-	"github.com/spencercdixon/izzy/db"
 	"github.com/spencercdixon/izzy/models"
 )
 
@@ -23,8 +22,6 @@ func (c *client) read() {
 	var entry models.CardEntry
 	for {
 		if err := c.socket.ReadJSON(&entry); err == nil {
-			service := db.CardEntryService{c.room.db}
-			_, err := service.Create(&entry)
 			if err != nil {
 				log.Fatal(err)
 			}

@@ -9,4 +9,5 @@ type CardEntry struct {
 type CardService interface {
 	// Find(id int) (*CardEntry, error)
 	Create(ce *CardEntry) error
+	Count() (int, error)
 }

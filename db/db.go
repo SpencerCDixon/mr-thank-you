@@ -37,6 +37,12 @@ func (s *CardEntryService) Create(c *models.CardEntry) (int, error) {
 	return lastInsertId, err
 }
 
+func (s *CardEntryService) Count() (int, error) {
+	var count int
+	err := s.DB.QueryRow("SELECT SUM(count) from card_entries").Scan(&count)
+	return count, err
+}
+
 // Utility
 func checkErr(err error) {
 	if err != nil {
