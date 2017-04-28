@@ -38,7 +38,6 @@ func main() {
 	}
 
 	// Handle endpoints
-	http.Handle("/", http.FileServer(http.Dir("./dist")))
 
 	// TODO: Refactor this and handle all errors
 	http.HandleFunc("/api/count", func(w http.ResponseWriter, req *http.Request) {
@@ -77,6 +76,7 @@ func main() {
 		}
 	})
 	http.Handle("/ws", r)
+	http.Handle("/", http.FileServer(http.Dir("./dist")))
 
 	// get the room going
 	go r.run()

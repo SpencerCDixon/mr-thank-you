@@ -27,7 +27,9 @@ module.exports = {
           fallback: "style-loader",
           use: "css-loader"
         })
-      }
+      },
+      { test: /\.png/, use: 'file-loader' },
+      { test: /\.png/, use: 'url-loader' },
     ]
   },
   resolve: {

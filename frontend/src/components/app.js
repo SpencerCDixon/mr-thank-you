@@ -2,14 +2,16 @@ import { h, Component } from 'preact';
 import styled, { ThemeProvider } from 'styled-components';
 import { colors, fonts } from 'styles';
 import CardEntryForm from './CardEntryForm';
+import Logo from './Logo.js';
 
 const Header = styled.h1`
   color: ${colors.black};
 `
+// background: linear-gradient(135deg, #182848, #4B6CB7);
+
 const Wrapper = styled.div`
   min-height: 100vh;
   max-width: 100%;
-  background: linear-gradient(135deg, #182848, #4B6CB7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,17 +84,22 @@ class App extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Flex column center>
-          <Title bold>Elevating the level of gratitude on the planet by 1%.</Title>
-          <Title>One card at a time.</Title>
-          <Cards>{this.state.cards}</Cards>
-        </Flex>
-        <div>
-          <SubTitle>Cards sent to date. Submit yours: </SubTitle>
-          <CardEntryForm onSubmit={this.handleSend} />
+      <div class="bg">
+        <div style={{width: 40, height: 50, position: 'absolute', left: 40, top: 40}} >
+          <Logo />
         </div>
-      </Wrapper>
+        <Wrapper>
+          <Flex column center>
+            <Title bold>Elevating the level of gratitude on the planet by 1%.</Title>
+            <Title>One card at a time.</Title>
+            <Cards>{this.state.cards}</Cards>
+          </Flex>
+          <div>
+            <SubTitle>Cards sent to date. Submit yours: </SubTitle>
+            <CardEntryForm onSubmit={this.handleSend} />
+          </div>
+        </Wrapper>
+      </div>
     );
   }
 }
