@@ -90,6 +90,7 @@ class App extends Component {
             <Title>One card at a time.</Title>
             <Cards>
               <CountUp 
+                redraw={false}
                 start={0} 
                 end={this.state.cards} 
                 duration={5}
