@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "preact": "^8.1.0",
+    "react-countup": "^2.0.3",
     "styled-components": "^1.4.5",
     "whatwg-fetch": "^2.0.3"
   },

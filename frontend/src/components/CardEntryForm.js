@@ -9,10 +9,9 @@ const Flex = styled.div`
 `
 
 const Input = styled.input`
-  padding: 20px;
   font-size: 1.25em;
   padding: 0.85em;
-  margin: 0.5em;
+  margin: 0.5em 0em;
   color: #757575;
   border: ${props => props.error ? '2px solid' : 'none'};
   border-radius: 3px;
@@ -42,7 +41,7 @@ const Button = styled.button`
   background: ${colors.red};
   padding: 1em;
   border-radius: 3px;
-  margin: 0.5em;
+  margin: 0.5em 0em;
   border: none;
   font-size: 1.25em;
 

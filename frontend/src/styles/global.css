@@ -7,7 +7,7 @@ body {
 }
 
 .bg {
-  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(https://s3-us-west-2.amazonaws.com/mrthankyou/man.jpg);
+  background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)), url(https://s3-us-west-2.amazonaws.com/mrthankyou/man.jpg);
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;

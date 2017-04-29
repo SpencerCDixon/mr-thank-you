@@ -1,13 +1,9 @@
 import { h, Component } from 'preact';
 import styled, { ThemeProvider } from 'styled-components';
 import { colors, fonts } from 'styles';
+import CountUp from 'react-countup';
 import CardEntryForm from './CardEntryForm';
-import Logo from './Logo.js';
-
-const Header = styled.h1`
-  color: ${colors.black};
-`
-// background: linear-gradient(135deg, #182848, #4B6CB7);
+import TopNav from './TopNav';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -33,6 +29,7 @@ const SubTitle = styled.h3`
   font-family: ${fonts.primary};
   letter-spacing: 0.1rem;
   font-weight: ${props => props.bold ? 700 : 100};
+  margin: .2em 0;
 `
 
 const Cards = styled.p`
@@ -85,14 +82,19 @@ class App extends Component {
   render() {
     return (
       <div class="bg">
-        <div style={{width: 40, height: 50, position: 'absolute', left: 40, top: 40}} >
-          <Logo />
-        </div>
+        <TopNav />
+
         <Wrapper>
           <Flex column center>
             <Title bold>Elevating the level of gratitude on the planet by 1%.</Title>
             <Title>One card at a time.</Title>
-            <Cards>{this.state.cards}</Cards>
+            <Cards>
+              <CountUp 
+                start={0} 
+                end={this.state.cards} 
+                duration={5}
+              />
+            </Cards>
           </Flex>
           <div>
             <SubTitle>Cards sent to date. Submit yours: </SubTitle>
