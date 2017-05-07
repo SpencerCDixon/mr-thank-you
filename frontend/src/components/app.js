@@ -1,12 +1,12 @@
 import { h, Component } from 'preact';
 import styled, { ThemeProvider } from 'styled-components';
-import { colors, fonts } from 'styles';
+import { media, colors, fonts } from 'styles';
 import CountUp from 'react-countup';
 import CardEntryForm from './CardEntryForm';
 import TopNav from './TopNav';
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 75px);
   max-width: 100%;
   display: flex;
   align-items: center;
@@ -21,6 +21,10 @@ const Title = styled.h1`
   font-family: ${fonts.primary};
   letter-spacing: 0.2rem;
   font-weight: ${props => props.bold ? 700 : 100};
+  ${media.handheld`
+    font-size: 1.4em;
+    text-align: center;
+  `}
 `
 
 const SubTitle = styled.h3`
@@ -30,6 +34,9 @@ const SubTitle = styled.h3`
   letter-spacing: 0.1rem;
   font-weight: ${props => props.bold ? 700 : 100};
   margin: .2em 0;
+  ${media.handheld`
+    font-size: .8em;
+  `}
 `
 
 const Cards = styled.p`

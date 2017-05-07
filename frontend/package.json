@@ -11,7 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "preact": "^8.1.0",
+    "preact-compat": "^3.16.0",
+    "preact-portal": "^1.1.2",
     "react-countup": "^2.0.3",
+    "react-modal2": "^4.0.0",
     "styled-components": "^1.4.5",
     "whatwg-fetch": "^2.0.3"
   },

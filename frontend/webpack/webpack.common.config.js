@@ -38,7 +38,8 @@ module.exports = {
       "node_modules"
     ],
     alias: {
-      "react": "preact",
+      "react": "preact-compat",
+      "react-dom": "preact-compat",
     }
   },
   plugins: [
