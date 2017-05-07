@@ -7,7 +7,7 @@ common.plugins.push(
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('production'),
   }),
-  new webpack.optimize.UglifyJSPlugin()
+  new webpack.optimize.UglifyJsPlugin()
   // new Visualizer()
 );
 
