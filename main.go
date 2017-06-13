@@ -9,14 +9,21 @@ import (
 	"os"
 
 	"github.com/spencercdixon/izzy/db"
+	"github.com/spencercdixon/izzy/marketing"
 	"github.com/spencercdixon/izzy/models"
 	"github.com/spencercdixon/izzy/trace"
+	"github.com/joho/godotenv"
 )
 
-// Main is in charge of orchestrating all the required configuration and routing
-// for the app to run successfully in various environments: dev/prod.
 func main() {
-	// env flags
+	// load 12factor configuration in development
+	if _, err := os.Stat("./.env"); err == nil {
+		godotenv.Load()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("Error: PORT must be defined")
@@ -62,21 +69,20 @@ func main() {
 
 			if err != nil {
 				fmt.Println("failed decoding")
-				log.Fatal(err)
 			}
+
+			marketing.AddToList(entry.Email, entry.Name, entry.Count)
 
 			_, err = s.Create(&entry)
 
 			if err != nil {
 				fmt.Println("failed creating")
-				log.Fatal(err)
 			}
 			r.forward <- &entry
 			return
 		}
 	})
 	http.Handle("/ws", r)
-	http.Handle("/", http.FileServer(http.Dir("./dist")))
 
 	// get the room going
 	go r.run()

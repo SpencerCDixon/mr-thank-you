@@ -6,14 +6,10 @@ deploy:
 dev: 
 	@echo "Building"
 	@go build 
-	@PORT=3001 ./izzy -trace
+	./izzy -trace
 
 build-ui:
 	cd ./frontend
 	npm start
-
-# Starts the app on port 8080
-start:
-	PORT=8080 ./izzy
 
 .PHONY: deploy dev build-ui start
