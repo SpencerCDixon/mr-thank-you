@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
-    "build": "rm -rf ../dist && webpack --config ./webpack/webpack.prod.config.js"
+    "build": "rm -rf ./dist && webpack --config ./webpack/webpack.prod.config.js"
   },
   "author": "Spencer Dixon <spencercdixon@gmail.com> (http://spencerdixon.com/)",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "preact-portal": "^1.1.2",
     "react-countup": "^2.0.3",
     "react-modal2": "^4.0.0",
-    "styled-components": "^1.4.5",
+    "styled-components": "1.4.5",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

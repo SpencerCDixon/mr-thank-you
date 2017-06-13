@@ -33,7 +33,7 @@ const Button = styled.button`
   &:hover { 
     cursor: pointer; 
     box-shadow: 0 5px 15px 0 rgba(0,0,0,0.3); 
-      -webkit-appearance: none; 
+    -webkit-appearance: none; 
     outline: none; 
   } 
   &:disabled { 

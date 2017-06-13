@@ -31,20 +31,12 @@ class TopNav extends Component {
         <Logo />
         <Space />
         <Link onClick={this.toggleModal.bind(this, 'about')}>About</Link>
-        <Link onClick={this.toggleModal.bind(this, 'buy')}>Buy Cards</Link>
 
         <Modal 
           onClose={this.toggleModal.bind(this, 'about')} 
           open={this.state.about}
         >
           About the awesome movement!
-        </Modal>
-
-        <Modal 
-          onClose={this.toggleModal.bind(this, 'buy')} 
-          open={this.state.buy}
-        >
-          Here is how you buy cards!
         </Modal>
       </Container>
     );

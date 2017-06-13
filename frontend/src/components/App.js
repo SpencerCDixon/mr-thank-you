@@ -63,7 +63,7 @@ class App extends Component {
       alert('browser doesnt have websockets.. :-(');
     } else {
       const ws = process.env.NODE_ENV === 'production' ? 'wss' : 'ws';
-      this.socket = new WebSocket(`${ws}://${document.location.host}/ws`);
+      this.socket = new WebSocket(`${ws}://mrthankyou.herokuapp.com/ws`);
       this.socket.onopen = () => console.log('Connection opened');
       this.socket.onclose = () => console.log('Connection closed');
       this.socket.onmessage = e => {
@@ -96,12 +96,7 @@ class App extends Component {
             <Title bold>Elevating the level of gratitude on the planet by 1%.</Title>
             <Title>One card at a time.</Title>
             <Cards>
-              <CountUp 
-                redraw={false}
-                start={0} 
-                end={this.state.cards} 
-                duration={5}
-              />
+              {this.state.cards}
             </Cards>
           </Flex>
           <div>
