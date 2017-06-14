@@ -8,11 +8,12 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/joho/godotenv"
+	"github.com/rs/cors"
 	"github.com/spencercdixon/izzy/db"
 	"github.com/spencercdixon/izzy/marketing"
 	"github.com/spencercdixon/izzy/models"
 	"github.com/spencercdixon/izzy/trace"
-	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -45,9 +46,12 @@ func main() {
 	}
 
 	// Handle endpoints
+	// Set up cors
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"https://mrthankyou.netlify.com"},
+	})
 
-	// TODO: Refactor this and handle all errors
-	http.HandleFunc("/api/count", func(w http.ResponseWriter, req *http.Request) {
+	count := http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		s := db.CardEntryService{postgres}
 
 		if req.Method == "GET" {
@@ -82,7 +86,15 @@ func main() {
 			return
 		}
 	})
-	http.Handle("/ws", r)
+
+	ping := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte("{\"pong\": \":)\"}"))
+	})
+
+	http.Handle("/api/count", c.Handler(count))
+	http.Handle("/ws", c.Handler(r))
+	http.Handle("/ping", c.Handler(ping))
 
 	// get the room going
 	go r.run()
