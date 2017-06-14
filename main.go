@@ -48,7 +48,7 @@ func main() {
 	// Handle endpoints
 	// Set up cors
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"https://mrthankyou.netlify.com"},
+		AllowedOrigins: []string{"*"},
 	})
 
 	count := http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
