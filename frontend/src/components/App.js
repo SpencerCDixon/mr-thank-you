@@ -51,6 +51,8 @@ const Flex = styled.div`
   align-items: ${props => props.center ? 'center' : ''};
 `
 
+const apiEndpoint = process.env.NODE_ENV === 'production' ? 'https://mrthankyou.herokuapp.com' : 'https://localhost:3001'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,7 @@ class App extends Component {
       }
     }
 
-    fetch('/api/count')
+    fetch(`${apiEndpoint}/api/count`)
       .then(response => response.json())
       .then(({Count}) => {
         this.setState({cards: Count});
@@ -80,7 +82,7 @@ class App extends Component {
   }
 
   handleSend = (values) => {
-    fetch('/api/count', {
+    fetch(`${apiEndpoint}/api/count`, {
       method: 'POST',
       body: JSON.stringify(values),
     });
