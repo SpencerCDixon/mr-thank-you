@@ -1,8 +1,9 @@
 # Builds app for linux and deploys to heroku
 deploy:
 	@echo "Building go app to 'bin/heroku"
-	@git checkout -b build
 	@GOOS=linux go build -o bin/heroku
+	@echo "Creating temporary git branch to deploy to heroku"
+	@git checkout -b build
 	@git add ./bin/heroku
 	@git commit -m "build commit"
 	@git push heroku master --force
