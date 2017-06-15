@@ -60,12 +60,9 @@ class App extends Component {
 
   componentDidMount() {
     if (!window["WebSocket"]) {
-    // TODO: handle error gracefully
-      alert('browser doesnt have websockets.. :-(');
+      console.error('This browser doesnt support websockets');
     } else {
       this.socket = new WebSocket(websocketUrl);
-      this.socket.onopen = () => console.log('Connection opened');
-      this.socket.onclose = () => console.log('Connection closed');
       this.socket.onmessage = e => {
         const entry = JSON.parse(e.data);
         this.setState({cards: this.state.cards + entry.count});
