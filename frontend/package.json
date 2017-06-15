@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
-    "build": "rm -rf ./dist && webpack --config ./webpack/webpack.prod.config.js"
+    "build": "rm -rf ./dist && webpack --config ./webpack/webpack.prod.config.js",
+    "deploy": "npm run build && npm run redirect && netlify deploy ./dist",
+    "redirect": "cp ./webpack/_redirects ./dist/_redirects"
   },
   "author": "Spencer Dixon <spencercdixon@gmail.com> (http://spencerdixon.com/)",
   "license": "MIT",
