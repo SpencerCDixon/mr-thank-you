@@ -16,7 +16,7 @@ const Input = styled.input`
   border: none; 
   border-radius: 3px; 
   border-color: ${props => (props.error ? colors.red : "")}; 
-    -webkit-appearance: none; 
+  -webkit-appearance: none; 
   box-shadow: 0 1px 0 0 var(--bg), 0 2px 0 0 var(--bg), 0 3px 0 0 var(--bg), 0 4px 0 0 var(--bg); 
   &:focus { 
     outline: none; 

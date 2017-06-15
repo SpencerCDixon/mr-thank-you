@@ -22,6 +22,7 @@ const Title = styled.h1`
   font-family: ${fonts.primary};
   letter-spacing: 0.2rem;
   font-weight: ${props => props.bold ? 700 : 100};
+  text-align: center;
   ${media.handheld`
     font-size: 1.4em;
     text-align: center;
@@ -36,6 +37,7 @@ const SubTitle = styled.h3`
   font-weight: ${props => props.bold ? 700 : 100};
   margin: .2em 0;
   ${media.handheld`
+    font-weight: 300;
     font-size: .8em;
   `}
 `
@@ -44,6 +46,9 @@ const Cards = styled.p`
   font-size: 5em;
   color: white;
   margin: 40px;
+  ${media.handheld`
+    margin: 10px;
+  `}
 `
 
 const Flex = styled.div`
