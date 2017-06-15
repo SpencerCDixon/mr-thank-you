@@ -15,6 +15,12 @@ const Space = styled.div`
   ${flex.auto}
 `
 
+const sx = {
+  position: 'absolute',
+  top: 20,
+  left: 20,
+};
+
 class TopNav extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +34,9 @@ class TopNav extends Component {
   render() {
     return (
       <Container>
-        <Logo />
+        <div style={sx}>
+          <Logo height={60} />
+        </div>
         <Space />
         <Link onClick={this.toggleModal.bind(this, 'about')}>About</Link>
 
