@@ -13,15 +13,6 @@ config.devServer = {
   contentBase: path.join(__dirname, '..', 'dist'),
   hot: true,
   clientLogLevel: 'error',
-  proxy: {
-    "/ws": {
-      target: "ws://localhost:3001",
-      ws: true,
-    },
-    "/api": {
-      target: "http://localhost:3001",
-    }
-  }
 };
 
 module.exports = config

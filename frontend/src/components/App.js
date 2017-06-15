@@ -4,6 +4,7 @@ import { media, colors, fonts } from 'styles';
 import CountUp from 'react-countup';
 import CardEntryForm from './CardEntryForm';
 import TopNav from './TopNav';
+import { websocketUrl, apiUrl } from '../util/api';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 75px);
@@ -51,8 +52,6 @@ const Flex = styled.div`
   align-items: ${props => props.center ? 'center' : ''};
 `
 
-const apiEndpoint = process.env.NODE_ENV === 'production' ? 'https://mrthankyou.herokuapp.com' : 'https://localhost:3001'
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -64,8 +63,7 @@ class App extends Component {
     // TODO: handle error gracefully
       alert('browser doesnt have websockets.. :-(');
     } else {
-      const ws = process.env.NODE_ENV === 'production' ? 'wss' : 'ws';
-      this.socket = new WebSocket(`${ws}://mrthankyou.herokuapp.com/ws`);
+      this.socket = new WebSocket(websocketUrl);
       this.socket.onopen = () => console.log('Connection opened');
       this.socket.onclose = () => console.log('Connection closed');
       this.socket.onmessage = e => {
@@ -74,7 +72,7 @@ class App extends Component {
       }
     }
 
-    fetch(`${apiEndpoint}/api/count`)
+    fetch(`${apiUrl}/api/count`)
       .then(response => response.json())
       .then(({Count}) => {
         this.setState({cards: Count});
@@ -82,7 +80,7 @@ class App extends Component {
   }
 
   handleSend = (values) => {
-    fetch(`${apiEndpoint}/api/count`, {
+    fetch(`${apiUrl}/api/count`, {
       method: 'POST',
       body: JSON.stringify(values),
     });

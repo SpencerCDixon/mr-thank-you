@@ -6,10 +6,11 @@ deploy:
 	@git checkout -b build
 	@git add ./bin/heroku
 	@git commit -m "build commit"
-	@git push heroku master --force
+	@git push heroku build:master --force
 	@git checkout master
 	@git branch -D build
 
+# Starts up the local backend api
 dev: 
 	@echo "Building"
 	@go build 
@@ -19,4 +20,4 @@ build-ui:
 	cd ./frontend
 	npm start
 
-.PHONY: deploy dev build-ui start
+.PHONY: deploy dev build-ui 
