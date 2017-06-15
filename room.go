@@ -71,10 +71,12 @@ var upgrader = &websocket.Upgrader{
 		local := "localhost"
 		heroku := "mrthankyou.herokuapp"
 		netlify := "netlify"
+		prod := "mrthankyou"
 		// whitelist our webpack dev server to let it through in development
 		if strings.Contains(origin, local) ||
 			strings.Contains(origin, heroku) ||
-			strings.Contains(origin, netlify) {
+			strings.Contains(origin, netlify) ||
+			strings.Contains(origin, prod) {
 			return true
 		}
 		return false
