@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -65,9 +64,7 @@ var upgrader = &websocket.Upgrader{
 	WriteBufferSize: socketBufferSize,
 	CheckOrigin: func(r *http.Request) bool {
 		origin := r.Header.Get("Origin")
-		fmt.Println("ORIGIN: ", origin)
 
-		// TODO: don't hard code these in...
 		local := "localhost"
 		heroku := "mrthankyou.herokuapp"
 		netlify := "netlify"
