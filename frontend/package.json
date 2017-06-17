@@ -12,6 +12,7 @@
   "author": "Spencer Dixon <spencercdixon@gmail.com> (http://spencerdixon.com/)",
   "license": "MIT",
   "dependencies": {
+    "compression-webpack-plugin": "^0.4.0",
     "preact": "^8.1.0",
     "preact-compat": "^3.16.0",
     "preact-portal": "^1.1.2",

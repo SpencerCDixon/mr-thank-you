@@ -45,7 +45,7 @@ const SubTitle = styled.h3`
 const Cards = styled.p`
   font-size: 5em;
   color: white;
-  margin: 40px;
+  margin: 10px;
   ${media.handheld`
     margin: 10px;
   `}

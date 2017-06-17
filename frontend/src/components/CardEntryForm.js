@@ -9,8 +9,8 @@ const Flex = styled.div`
 
 const Input = styled.input` 
   --bg: ${props => (props.error ? colors.red : props.success ? colors.green : colors.black)} 
-  font-size: 1.25em; 
-  padding: 0.85em; 
+  font-size: 1em; 
+  padding: 0.65em; 
   margin: 0.5em 0em; 
   color: #757575; 
   border: none; 
@@ -27,8 +27,10 @@ const Button = styled.button`
   color: white; 
   font-family: ${fonts.primary}; 
   background: ${colors.red}; 
-  padding: 1em; border-radius: 3px; 
-  margin: 0.5em 0em; border: none; 
+  padding: .8em; 
+  border-radius: 3px; 
+  margin: 0.5em 0em; 
+  border: none; 
   font-size: 1.25em; 
   &:hover { 
     cursor: pointer; 
