@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import styled, { ThemeProvider } from 'styled-components';
 import { media, colors, fonts } from 'styles';
-import CountUp from 'react-countup';
 import CardEntryForm from './CardEntryForm';
 import TopNav from './TopNav';
 import { websocketUrl, apiUrl } from '../util/api';
